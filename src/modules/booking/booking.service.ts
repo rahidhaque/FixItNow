@@ -48,3 +48,10 @@ export async function listBookings() {
     select: { id: true, customerId: true, serviceId: true, totalPrice: true, description: true, createdAt: true }
   });
 }
+
+export async function getBookingById(bookingId: string) {
+  return prisma.booking.findUnique({
+    where: { id: bookingId },
+    select: { id: true, customerId: true, serviceId: true, totalPrice: true, description: true, createdAt: true }
+  });
+}
