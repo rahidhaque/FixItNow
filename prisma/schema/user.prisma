@@ -8,7 +8,6 @@ model User{
     avatar String?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    services Service[] @relation("TechnicianServices")
     technicianBookings Booking[] @relation("TechnicianBookings")
     customerBookings Booking[] @relation("CustomerBookings")
     payments Payment[]

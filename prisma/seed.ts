@@ -104,17 +104,13 @@ async function main() {
       title: "Deep Home Cleaning",
       description: "Complete cleaning service",
       city: "Chittagong",
-      technicianId: technician1.id,
-      categoryId: cleaning.id,
     },
   });
   const service2 = await prisma.service.create({
     data: {
       title: "House Wiring",
       description: "Complete electrical wiring",
-      city: "Dhaka",
-      technicianId: technician2.id,
-      categoryId: electrical.id,
+      city: "Dhaka"
     },
   });
   const service3 = await prisma.service.create({
@@ -122,8 +118,7 @@ async function main() {
       title: "Water Pipe Repair",
       description: "Leak fixing",
       city: "Dhaka",
-      technicianId: technician3.id,
-      categoryId: plumbing.id,
+      availability: false
     },
   });
 

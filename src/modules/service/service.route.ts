@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { getServices } from "./service.controller";
+import { addService, getServices } from "./service.controller";
 
 export const serviceRouter = Router();
 
+serviceRouter.post("/service", addService);
 serviceRouter.get("/services", getServices);

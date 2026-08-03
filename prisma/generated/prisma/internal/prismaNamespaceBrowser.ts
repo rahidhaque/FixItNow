@@ -134,9 +134,7 @@ export const ServiceScalarFieldEnum = {
   title: 'title',
   description: 'description',
   city: 'city',
-  availability: 'availability',
-  categoryId: 'categoryId',
-  technicianId: 'technicianId'
+  availability: 'availability'
 } as const
 
 export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
