@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "build": "prisma generate && tsup",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev"
   },
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.2",
+    "tsup": "^8.5.1",
     "typescript": "^7.0.2"
   },
   "dependencies": {
