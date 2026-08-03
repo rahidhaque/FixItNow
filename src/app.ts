@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express, { type Application } from "express";
 import { notFoundHandler } from "./middleware/notFound";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
+import authRouter from "./modules/auth/auth.route";
 
 const app: Application= express();
 
@@ -13,7 +14,10 @@ app.get("/", (req,res) =>{
  res.send("Server is running on port");
 })
 
-app.use(globalErrorHandler);
+app.use("/api/auth", authRouter);
+
 app.use(notFoundHandler);
+app.use(globalErrorHandler);
+
 
 export default app;
