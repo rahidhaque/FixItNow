@@ -262,11 +262,11 @@ export type ReviewOrderByWithRelationInput = {
 export type ReviewWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   bookingId?: string
-  customerId?: string
-  serviceId?: string
   AND?: Prisma.ReviewWhereInput | Prisma.ReviewWhereInput[]
   OR?: Prisma.ReviewWhereInput[]
   NOT?: Prisma.ReviewWhereInput | Prisma.ReviewWhereInput[]
+  customerId?: Prisma.StringFilter<"Review"> | string
+  serviceId?: Prisma.StringFilter<"Review"> | string
   rating?: Prisma.IntFilter<"Review"> | number
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
@@ -274,7 +274,7 @@ export type ReviewWhereUniqueInput = Prisma.AtLeast<{
   booking?: Prisma.XOR<Prisma.BookingScalarRelationFilter, Prisma.BookingWhereInput>
   customer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
-}, "id" | "bookingId" | "customerId" | "serviceId">
+}, "id" | "bookingId">
 
 export type ReviewOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -314,7 +314,7 @@ export type ReviewCreateInput = {
   updatedAt?: Date | string
   booking: Prisma.BookingCreateNestedOneWithoutReviewInput
   customer: Prisma.UserCreateNestedOneWithoutReviewsInput
-  service: Prisma.ServiceCreateNestedOneWithoutReviewInput
+  service: Prisma.ServiceCreateNestedOneWithoutReviewsInput
 }
 
 export type ReviewUncheckedCreateInput = {
@@ -336,7 +336,7 @@ export type ReviewUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
   customer?: Prisma.UserUpdateOneRequiredWithoutReviewsNestedInput
-  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewNestedInput
+  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewsNestedInput
 }
 
 export type ReviewUncheckedUpdateInput = {
@@ -476,36 +476,46 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type ReviewCreateNestedOneWithoutServiceInput = {
-  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
-  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput
-  connect?: Prisma.ReviewWhereUniqueInput
+export type ReviewCreateNestedManyWithoutServiceInput = {
+  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput> | Prisma.ReviewCreateWithoutServiceInput[] | Prisma.ReviewUncheckedCreateWithoutServiceInput[]
+  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput | Prisma.ReviewCreateOrConnectWithoutServiceInput[]
+  createMany?: Prisma.ReviewCreateManyServiceInputEnvelope
+  connect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
 }
 
-export type ReviewUncheckedCreateNestedOneWithoutServiceInput = {
-  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
-  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput
-  connect?: Prisma.ReviewWhereUniqueInput
+export type ReviewUncheckedCreateNestedManyWithoutServiceInput = {
+  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput> | Prisma.ReviewCreateWithoutServiceInput[] | Prisma.ReviewUncheckedCreateWithoutServiceInput[]
+  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput | Prisma.ReviewCreateOrConnectWithoutServiceInput[]
+  createMany?: Prisma.ReviewCreateManyServiceInputEnvelope
+  connect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
 }
 
-export type ReviewUpdateOneWithoutServiceNestedInput = {
-  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
-  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput
-  upsert?: Prisma.ReviewUpsertWithoutServiceInput
-  disconnect?: Prisma.ReviewWhereInput | boolean
-  delete?: Prisma.ReviewWhereInput | boolean
-  connect?: Prisma.ReviewWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ReviewUpdateToOneWithWhereWithoutServiceInput, Prisma.ReviewUpdateWithoutServiceInput>, Prisma.ReviewUncheckedUpdateWithoutServiceInput>
+export type ReviewUpdateManyWithoutServiceNestedInput = {
+  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput> | Prisma.ReviewCreateWithoutServiceInput[] | Prisma.ReviewUncheckedCreateWithoutServiceInput[]
+  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput | Prisma.ReviewCreateOrConnectWithoutServiceInput[]
+  upsert?: Prisma.ReviewUpsertWithWhereUniqueWithoutServiceInput | Prisma.ReviewUpsertWithWhereUniqueWithoutServiceInput[]
+  createMany?: Prisma.ReviewCreateManyServiceInputEnvelope
+  set?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  disconnect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  delete?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  connect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  update?: Prisma.ReviewUpdateWithWhereUniqueWithoutServiceInput | Prisma.ReviewUpdateWithWhereUniqueWithoutServiceInput[]
+  updateMany?: Prisma.ReviewUpdateManyWithWhereWithoutServiceInput | Prisma.ReviewUpdateManyWithWhereWithoutServiceInput[]
+  deleteMany?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
 }
 
-export type ReviewUncheckedUpdateOneWithoutServiceNestedInput = {
-  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
-  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput
-  upsert?: Prisma.ReviewUpsertWithoutServiceInput
-  disconnect?: Prisma.ReviewWhereInput | boolean
-  delete?: Prisma.ReviewWhereInput | boolean
-  connect?: Prisma.ReviewWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ReviewUpdateToOneWithWhereWithoutServiceInput, Prisma.ReviewUpdateWithoutServiceInput>, Prisma.ReviewUncheckedUpdateWithoutServiceInput>
+export type ReviewUncheckedUpdateManyWithoutServiceNestedInput = {
+  create?: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput> | Prisma.ReviewCreateWithoutServiceInput[] | Prisma.ReviewUncheckedCreateWithoutServiceInput[]
+  connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutServiceInput | Prisma.ReviewCreateOrConnectWithoutServiceInput[]
+  upsert?: Prisma.ReviewUpsertWithWhereUniqueWithoutServiceInput | Prisma.ReviewUpsertWithWhereUniqueWithoutServiceInput[]
+  createMany?: Prisma.ReviewCreateManyServiceInputEnvelope
+  set?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  disconnect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  delete?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  connect?: Prisma.ReviewWhereUniqueInput | Prisma.ReviewWhereUniqueInput[]
+  update?: Prisma.ReviewUpdateWithWhereUniqueWithoutServiceInput | Prisma.ReviewUpdateWithWhereUniqueWithoutServiceInput[]
+  updateMany?: Prisma.ReviewUpdateManyWithWhereWithoutServiceInput | Prisma.ReviewUpdateManyWithWhereWithoutServiceInput[]
+  deleteMany?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
 }
 
 export type ReviewCreateNestedManyWithoutCustomerInput = {
@@ -557,7 +567,7 @@ export type ReviewCreateWithoutBookingInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.UserCreateNestedOneWithoutReviewsInput
-  service: Prisma.ServiceCreateNestedOneWithoutReviewInput
+  service: Prisma.ServiceCreateNestedOneWithoutReviewsInput
 }
 
 export type ReviewUncheckedCreateWithoutBookingInput = {
@@ -593,7 +603,7 @@ export type ReviewUpdateWithoutBookingInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.UserUpdateOneRequiredWithoutReviewsNestedInput
-  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewNestedInput
+  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewsNestedInput
 }
 
 export type ReviewUncheckedUpdateWithoutBookingInput = {
@@ -631,35 +641,39 @@ export type ReviewCreateOrConnectWithoutServiceInput = {
   create: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
 }
 
-export type ReviewUpsertWithoutServiceInput = {
-  update: Prisma.XOR<Prisma.ReviewUpdateWithoutServiceInput, Prisma.ReviewUncheckedUpdateWithoutServiceInput>
-  create: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
-  where?: Prisma.ReviewWhereInput
+export type ReviewCreateManyServiceInputEnvelope = {
+  data: Prisma.ReviewCreateManyServiceInput | Prisma.ReviewCreateManyServiceInput[]
+  skipDuplicates?: boolean
 }
 
-export type ReviewUpdateToOneWithWhereWithoutServiceInput = {
-  where?: Prisma.ReviewWhereInput
+export type ReviewUpsertWithWhereUniqueWithoutServiceInput = {
+  where: Prisma.ReviewWhereUniqueInput
+  update: Prisma.XOR<Prisma.ReviewUpdateWithoutServiceInput, Prisma.ReviewUncheckedUpdateWithoutServiceInput>
+  create: Prisma.XOR<Prisma.ReviewCreateWithoutServiceInput, Prisma.ReviewUncheckedCreateWithoutServiceInput>
+}
+
+export type ReviewUpdateWithWhereUniqueWithoutServiceInput = {
+  where: Prisma.ReviewWhereUniqueInput
   data: Prisma.XOR<Prisma.ReviewUpdateWithoutServiceInput, Prisma.ReviewUncheckedUpdateWithoutServiceInput>
 }
 
-export type ReviewUpdateWithoutServiceInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.IntFieldUpdateOperationsInput | number
-  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
-  customer?: Prisma.UserUpdateOneRequiredWithoutReviewsNestedInput
+export type ReviewUpdateManyWithWhereWithoutServiceInput = {
+  where: Prisma.ReviewScalarWhereInput
+  data: Prisma.XOR<Prisma.ReviewUpdateManyMutationInput, Prisma.ReviewUncheckedUpdateManyWithoutServiceInput>
 }
 
-export type ReviewUncheckedUpdateWithoutServiceInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  bookingId?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.IntFieldUpdateOperationsInput | number
-  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type ReviewScalarWhereInput = {
+  AND?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
+  OR?: Prisma.ReviewScalarWhereInput[]
+  NOT?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
+  id?: Prisma.StringFilter<"Review"> | string
+  bookingId?: Prisma.StringFilter<"Review"> | string
+  customerId?: Prisma.StringFilter<"Review"> | string
+  serviceId?: Prisma.StringFilter<"Review"> | string
+  rating?: Prisma.IntFilter<"Review"> | number
+  comment?: Prisma.StringNullableFilter<"Review"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Review"> | Date | string
 }
 
 export type ReviewCreateWithoutCustomerInput = {
@@ -669,7 +683,7 @@ export type ReviewCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   booking: Prisma.BookingCreateNestedOneWithoutReviewInput
-  service: Prisma.ServiceCreateNestedOneWithoutReviewInput
+  service: Prisma.ServiceCreateNestedOneWithoutReviewsInput
 }
 
 export type ReviewUncheckedCreateWithoutCustomerInput = {
@@ -708,18 +722,44 @@ export type ReviewUpdateManyWithWhereWithoutCustomerInput = {
   data: Prisma.XOR<Prisma.ReviewUpdateManyMutationInput, Prisma.ReviewUncheckedUpdateManyWithoutCustomerInput>
 }
 
-export type ReviewScalarWhereInput = {
-  AND?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
-  OR?: Prisma.ReviewScalarWhereInput[]
-  NOT?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
-  id?: Prisma.StringFilter<"Review"> | string
-  bookingId?: Prisma.StringFilter<"Review"> | string
-  customerId?: Prisma.StringFilter<"Review"> | string
-  serviceId?: Prisma.StringFilter<"Review"> | string
-  rating?: Prisma.IntFilter<"Review"> | number
-  comment?: Prisma.StringNullableFilter<"Review"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Review"> | Date | string
+export type ReviewCreateManyServiceInput = {
+  id?: string
+  bookingId: string
+  customerId: string
+  rating: number
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ReviewUpdateWithoutServiceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
+  customer?: Prisma.UserUpdateOneRequiredWithoutReviewsNestedInput
+}
+
+export type ReviewUncheckedUpdateWithoutServiceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bookingId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ReviewUncheckedUpdateManyWithoutServiceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bookingId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewCreateManyCustomerInput = {
@@ -739,7 +779,7 @@ export type ReviewUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
-  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewNestedInput
+  service?: Prisma.ServiceUpdateOneRequiredWithoutReviewsNestedInput
 }
 
 export type ReviewUncheckedUpdateWithoutCustomerInput = {

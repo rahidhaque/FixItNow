@@ -1,8 +1,8 @@
 model Review{
     id String @id@default(uuid())
     bookingId String @unique
-    customerId String @unique
-    serviceId String @unique
+    customerId String 
+    serviceId String 
     rating Int
     comment String?
     createdAt DateTime @default(now())

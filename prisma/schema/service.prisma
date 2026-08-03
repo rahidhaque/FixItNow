@@ -9,7 +9,7 @@ model Service{
     category Category @relation(fields: [categoryId], references: [id])
     technician User @relation("TechnicianServices", fields: [technicianId], references: [id], onDelete: Cascade)
     bookings Booking[]
-    review Review?
+    reviews Review[]
 
     @@index([categoryId])
     @@index([technicianId])

@@ -201,7 +201,7 @@ export type ServiceWhereInput = {
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   technician?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   bookings?: Prisma.BookingListRelationFilter
-  review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type ServiceOrderByWithRelationInput = {
@@ -215,7 +215,7 @@ export type ServiceOrderByWithRelationInput = {
   category?: Prisma.CategoryOrderByWithRelationInput
   technician?: Prisma.UserOrderByWithRelationInput
   bookings?: Prisma.BookingOrderByRelationAggregateInput
-  review?: Prisma.ReviewOrderByWithRelationInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type ServiceWhereUniqueInput = Prisma.AtLeast<{
@@ -232,7 +232,7 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   technician?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   bookings?: Prisma.BookingListRelationFilter
-  review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id">
 
 export type ServiceOrderByWithAggregationInput = {
@@ -270,7 +270,7 @@ export type ServiceCreateInput = {
   category: Prisma.CategoryCreateNestedOneWithoutServicesInput
   technician: Prisma.UserCreateNestedOneWithoutServicesInput
   bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateInput = {
@@ -282,7 +282,7 @@ export type ServiceUncheckedCreateInput = {
   categoryId: string
   technicianId: string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUpdateInput = {
@@ -294,7 +294,7 @@ export type ServiceUpdateInput = {
   category?: Prisma.CategoryUpdateOneRequiredWithoutServicesNestedInput
   technician?: Prisma.UserUpdateOneRequiredWithoutServicesNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateInput = {
@@ -306,7 +306,7 @@ export type ServiceUncheckedUpdateInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUncheckedUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceCreateManyInput = {
@@ -438,18 +438,18 @@ export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
-export type ServiceCreateNestedOneWithoutReviewInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutReviewInput, Prisma.ServiceUncheckedCreateWithoutReviewInput>
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutReviewInput
+export type ServiceCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutReviewsInput, Prisma.ServiceUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutReviewsInput
   connect?: Prisma.ServiceWhereUniqueInput
 }
 
-export type ServiceUpdateOneRequiredWithoutReviewNestedInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutReviewInput, Prisma.ServiceUncheckedCreateWithoutReviewInput>
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutReviewInput
-  upsert?: Prisma.ServiceUpsertWithoutReviewInput
+export type ServiceUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutReviewsInput, Prisma.ServiceUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.ServiceUpsertWithoutReviewsInput
   connect?: Prisma.ServiceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceUpdateToOneWithWhereWithoutReviewInput, Prisma.ServiceUpdateWithoutReviewInput>, Prisma.ServiceUncheckedUpdateWithoutReviewInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceUpdateToOneWithWhereWithoutReviewsInput, Prisma.ServiceUpdateWithoutReviewsInput>, Prisma.ServiceUncheckedUpdateWithoutReviewsInput>
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -506,7 +506,7 @@ export type ServiceCreateWithoutBookingsInput = {
   availability?: boolean
   category: Prisma.CategoryCreateNestedOneWithoutServicesInput
   technician: Prisma.UserCreateNestedOneWithoutServicesInput
-  review?: Prisma.ReviewCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateWithoutBookingsInput = {
@@ -517,7 +517,7 @@ export type ServiceUncheckedCreateWithoutBookingsInput = {
   availability?: boolean
   categoryId: string
   technicianId: string
-  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceCreateOrConnectWithoutBookingsInput = {
@@ -544,7 +544,7 @@ export type ServiceUpdateWithoutBookingsInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   category?: Prisma.CategoryUpdateOneRequiredWithoutServicesNestedInput
   technician?: Prisma.UserUpdateOneRequiredWithoutServicesNestedInput
-  review?: Prisma.ReviewUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateWithoutBookingsInput = {
@@ -555,7 +555,7 @@ export type ServiceUncheckedUpdateWithoutBookingsInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.ReviewUncheckedUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceCreateWithoutCategoryInput = {
@@ -566,7 +566,7 @@ export type ServiceCreateWithoutCategoryInput = {
   availability?: boolean
   technician: Prisma.UserCreateNestedOneWithoutServicesInput
   bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateWithoutCategoryInput = {
@@ -577,7 +577,7 @@ export type ServiceUncheckedCreateWithoutCategoryInput = {
   availability?: boolean
   technicianId: string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceCreateOrConnectWithoutCategoryInput = {
@@ -619,7 +619,7 @@ export type ServiceScalarWhereInput = {
   technicianId?: Prisma.StringFilter<"Service"> | string
 }
 
-export type ServiceCreateWithoutReviewInput = {
+export type ServiceCreateWithoutReviewsInput = {
   id?: string
   title: string
   description?: string | null
@@ -630,7 +630,7 @@ export type ServiceCreateWithoutReviewInput = {
   bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
 }
 
-export type ServiceUncheckedCreateWithoutReviewInput = {
+export type ServiceUncheckedCreateWithoutReviewsInput = {
   id?: string
   title: string
   description?: string | null
@@ -641,23 +641,23 @@ export type ServiceUncheckedCreateWithoutReviewInput = {
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
 }
 
-export type ServiceCreateOrConnectWithoutReviewInput = {
+export type ServiceCreateOrConnectWithoutReviewsInput = {
   where: Prisma.ServiceWhereUniqueInput
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutReviewInput, Prisma.ServiceUncheckedCreateWithoutReviewInput>
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutReviewsInput, Prisma.ServiceUncheckedCreateWithoutReviewsInput>
 }
 
-export type ServiceUpsertWithoutReviewInput = {
-  update: Prisma.XOR<Prisma.ServiceUpdateWithoutReviewInput, Prisma.ServiceUncheckedUpdateWithoutReviewInput>
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutReviewInput, Prisma.ServiceUncheckedCreateWithoutReviewInput>
+export type ServiceUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.ServiceUpdateWithoutReviewsInput, Prisma.ServiceUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutReviewsInput, Prisma.ServiceUncheckedCreateWithoutReviewsInput>
   where?: Prisma.ServiceWhereInput
 }
 
-export type ServiceUpdateToOneWithWhereWithoutReviewInput = {
+export type ServiceUpdateToOneWithWhereWithoutReviewsInput = {
   where?: Prisma.ServiceWhereInput
-  data: Prisma.XOR<Prisma.ServiceUpdateWithoutReviewInput, Prisma.ServiceUncheckedUpdateWithoutReviewInput>
+  data: Prisma.XOR<Prisma.ServiceUpdateWithoutReviewsInput, Prisma.ServiceUncheckedUpdateWithoutReviewsInput>
 }
 
-export type ServiceUpdateWithoutReviewInput = {
+export type ServiceUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -668,7 +668,7 @@ export type ServiceUpdateWithoutReviewInput = {
   bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
 }
 
-export type ServiceUncheckedUpdateWithoutReviewInput = {
+export type ServiceUncheckedUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -687,7 +687,7 @@ export type ServiceCreateWithoutTechnicianInput = {
   availability?: boolean
   category: Prisma.CategoryCreateNestedOneWithoutServicesInput
   bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateWithoutTechnicianInput = {
@@ -698,7 +698,7 @@ export type ServiceUncheckedCreateWithoutTechnicianInput = {
   availability?: boolean
   categoryId: string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
-  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutServiceInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceCreateOrConnectWithoutTechnicianInput = {
@@ -744,7 +744,7 @@ export type ServiceUpdateWithoutCategoryInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   technician?: Prisma.UserUpdateOneRequiredWithoutServicesNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateWithoutCategoryInput = {
@@ -755,7 +755,7 @@ export type ServiceUncheckedUpdateWithoutCategoryInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUncheckedUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateManyWithoutCategoryInput = {
@@ -784,7 +784,7 @@ export type ServiceUpdateWithoutTechnicianInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   category?: Prisma.CategoryUpdateOneRequiredWithoutServicesNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateWithoutTechnicianInput = {
@@ -795,7 +795,7 @@ export type ServiceUncheckedUpdateWithoutTechnicianInput = {
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
-  review?: Prisma.ReviewUncheckedUpdateOneWithoutServiceNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateManyWithoutTechnicianInput = {
@@ -814,10 +814,12 @@ export type ServiceUncheckedUpdateManyWithoutTechnicianInput = {
 
 export type ServiceCountOutputType = {
   bookings: number
+  reviews: number
 }
 
 export type ServiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | ServiceCountOutputTypeCountBookingsArgs
+  reviews?: boolean | ServiceCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -837,6 +839,13 @@ export type ServiceCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Type
   where?: Prisma.BookingWhereInput
 }
 
+/**
+ * ServiceCountOutputType without action
+ */
+export type ServiceCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
 
 export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -849,7 +858,7 @@ export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   bookings?: boolean | Prisma.Service$bookingsArgs<ExtArgs>
-  review?: boolean | Prisma.Service$reviewArgs<ExtArgs>
+  reviews?: boolean | Prisma.Service$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ServiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["service"]>
 
@@ -892,7 +901,7 @@ export type ServiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   bookings?: boolean | Prisma.Service$bookingsArgs<ExtArgs>
-  review?: boolean | Prisma.Service$reviewArgs<ExtArgs>
+  reviews?: boolean | Prisma.Service$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ServiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ServiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -910,7 +919,7 @@ export type $ServicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     category: Prisma.$CategoryPayload<ExtArgs>
     technician: Prisma.$UserPayload<ExtArgs>
     bookings: Prisma.$BookingPayload<ExtArgs>[]
-    review: Prisma.$ReviewPayload<ExtArgs> | null
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1317,7 +1326,7 @@ export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends runtime.
   category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   technician<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   bookings<T extends Prisma.Service$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Service$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  review<T extends Prisma.Service$reviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Service$reviewArgs<ExtArgs>>): Prisma.Prisma__ReviewClient<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  reviews<T extends Prisma.Service$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Service$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1779,9 +1788,9 @@ export type Service$bookingsArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Service.review
+ * Service.reviews
  */
-export type Service$reviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Service$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Review
    */
@@ -1795,6 +1804,11 @@ export type Service$reviewArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.ReviewInclude<ExtArgs> | null
   where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

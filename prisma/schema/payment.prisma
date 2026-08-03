@@ -1,7 +1,7 @@
 model Payment{
     id String @id@default(uuid())
     bookingId String @unique
-    customerId String  @unique
+    customerId String  
     amount Float
     status PaymentStatus @default(PENDING)
     transactionId String
