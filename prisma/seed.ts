@@ -131,6 +131,7 @@ async function main() {
   const booking1 = await prisma.booking.create({
     data: {
       technicianId: technician1.id,
+      customerId: customer1.id,
       serviceId: service1.id,
       status: BookingStatus.COMPLETED,
       totalPrice: 1200,
@@ -141,6 +142,7 @@ async function main() {
   const booking2 = await prisma.booking.create({
     data: {
       technicianId: technician2.id,
+      customerId: customer2.id,
       serviceId: service2.id,
       status: BookingStatus.ACTIVE,
       totalPrice: 3450,
@@ -151,6 +153,7 @@ async function main() {
   const booking3 = await prisma.booking.create({
     data: {
       technicianId: technician3.id,
+      customerId: customer2.id,
       serviceId: service3.id,
       status: BookingStatus.PENDING,
       totalPrice: 1800,

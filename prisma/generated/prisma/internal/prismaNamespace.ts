@@ -908,6 +908,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const BookingScalarFieldEnum = {
   id: 'id',
   technicianId: 'technicianId',
+  customerId: 'customerId',
   serviceId: 'serviceId',
   status: 'status',
   totalPrice: 'totalPrice',

@@ -1,6 +1,7 @@
 model Booking{
     id String @id @default(uuid())
     technicianId String 
+    customerId String
     serviceId String
     status BookingStatus @default(PENDING)
     totalPrice Float
@@ -9,9 +10,11 @@ model Booking{
     updatedAt DateTime @updatedAt
     service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
     technician User @relation("TechnicianBookings", fields: [technicianId], references: [id], onDelete: Cascade)
+    customer User @relation("CustomerBookings", fields: [customerId], references: [id], onDelete: Cascade)
     payment Payment?
     review Review?
 
     @@index([serviceId])
     @@index([technicianId])
+    @@index([customerId])
 }

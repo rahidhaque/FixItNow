@@ -9,7 +9,8 @@ model User{
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     services Service[] @relation("TechnicianServices")
-    bookings Booking[] @relation("TechnicianBookings")
+    technicianBookings Booking[] @relation("TechnicianBookings")
+    customerBookings Booking[] @relation("CustomerBookings")
     payments Payment[]
     reviews Review[]
 }
