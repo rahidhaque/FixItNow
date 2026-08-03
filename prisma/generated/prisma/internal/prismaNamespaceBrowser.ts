@@ -80,6 +80,7 @@ export const BookingScalarFieldEnum = {
   customerId: 'customerId',
   serviceId: 'serviceId',
   status: 'status',
+  totalPrice: 'totalPrice',
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -103,7 +104,9 @@ export const PaymentScalarFieldEnum = {
   id: 'id',
   bookingId: 'bookingId',
   customerId: 'customerId',
+  amount: 'amount',
   status: 'status',
+  transactionId: 'transactionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
