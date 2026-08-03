@@ -6,6 +6,7 @@ import authRouter from "./modules/auth/auth.route";
 import categoryRouter from "./modules/category/category.route";
 import { userRouter } from "./modules/user/user.route";
 import { serviceRouter } from "./modules/service/service.route";
+import bookingRouter from "./modules/booking/booking.route";
 
 
 const app: Application= express();
@@ -22,6 +23,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/user", userRouter);
 app.use("/api", serviceRouter);
+app.use("/api/bookings", bookingRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
