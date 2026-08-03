@@ -1,12 +1,21 @@
 import type { Response } from "express";
 
+type Meta = {
+  page: number;
+  limit: number;
+  total: number;
+};
+
 export function sendResponse<T>(
   res: Response,
-  { message, data, error }: { message: unknown; data?: T; error?: boolean },
-  status = 200,
+  payload: { statusCode?: number; message: string; data: T; meta?: Meta }
 ) {
-  res.status(status).json({
-    message: message,
-    data: error ? undefined : data,
+  const { statusCode = 200, message, data, meta } = payload;
+  res.status(statusCode).json({
+    success: true,
+    statusCode,
+    message,
+    ...(meta ? { meta } : {}),
+    data
   });
 }

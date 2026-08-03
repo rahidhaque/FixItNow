@@ -9,11 +9,10 @@ export const register = catchAsync(async (req: Request, res: Response) => {
 
   const result = await registerUser(input);
 
-  sendResponse(
-    res,
-    { message: "User registered successfully", data: { user: result } },
-    201,
-  );
+  sendResponse(res, {
+    message: "User Registered Successfully",
+    data: { user: result },
+  });
 });
 
 export const login = catchAsync(async (req: Request, res: Response) => {
@@ -32,5 +31,8 @@ export const login = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const me = catchAsync(async (req: Request, res: Response) => {
-  sendResponse(res, { message: "My Profile fetched successfully", data: { user: req.user } });
+  sendResponse(res, {
+    message: "My Profile fetched successfully",
+    data: { user: req.user },
+  });
 });
