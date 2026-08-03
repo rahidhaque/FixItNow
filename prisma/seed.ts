@@ -8,12 +8,12 @@ import {
 } from "./generated/prisma/enums";
 
 async function main() {
-  await prisma.review.deleteMany();
-  await prisma.payment.deleteMany();
-  await prisma.booking.deleteMany();
-  await prisma.service.deleteMany();
-  await prisma.category.deleteMany();
-  await prisma.user.deleteMany();
+//   await prisma.review.deleteMany();
+//   await prisma.payment.deleteMany();
+//   await prisma.booking.deleteMany();
+//   await prisma.service.deleteMany();
+//   await prisma.category.deleteMany();
+//   await prisma.user.deleteMany();
 
   const password = await bcrypt.hash("bdonti123", 10);
 
@@ -130,7 +130,7 @@ async function main() {
   //bookings
   const booking1 = await prisma.booking.create({
     data: {
-      customerId: customer1.id,
+      technicianId: technician1.id,
       serviceId: service1.id,
       status: BookingStatus.COMPLETED,
       totalPrice: 1200,
@@ -140,7 +140,7 @@ async function main() {
 
   const booking2 = await prisma.booking.create({
     data: {
-      customerId: customer2.id,
+      technicianId: technician2.id,
       serviceId: service2.id,
       status: BookingStatus.ACTIVE,
       totalPrice: 3450,
@@ -150,7 +150,7 @@ async function main() {
 
   const booking3 = await prisma.booking.create({
     data: {
-      customerId: customer2.id,
+      technicianId: technician3.id,
       serviceId: service3.id,
       status: BookingStatus.PENDING,
       totalPrice: 1800,
