@@ -42,3 +42,9 @@ export async function createBookingRequest(
   });
 }
 
+export async function listBookings() {
+  return prisma.booking.findMany({
+    orderBy: { createdAt: "desc" },
+    select: { id: true, customerId: true, serviceId: true, totalPrice: true, description: true, createdAt: true }
+  });
+}
