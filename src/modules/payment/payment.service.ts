@@ -95,3 +95,25 @@ export async function completePayment(
     }),
   ]);
 }
+
+export const getMyPaymentHistory = async (customerId: string) => {
+  const payments = await prisma.payment.findMany({
+    where: {
+      booking: {
+        customerId,
+      },
+    },
+    include: {
+      booking: {
+        include: {
+          service: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return payments;
+};
