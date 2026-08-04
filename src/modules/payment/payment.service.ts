@@ -1,3 +1,4 @@
+import { config } from "../../config";
 import { prisma } from "../../lib/prisma";
 import { stripe } from "../../lib/stripe";
 import { AppError } from "../../utility/appError";
@@ -34,8 +35,8 @@ export const createCheckOutSession = async (
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     metadata: { bookingId: booking.id },
-    success_url: "http://localhost:3000/payment/success",
-    cancel_url: "http://localhost:3000/payment/cancel",
+    success_url: `${config.CLIENT_URL}/payment/success`,
+    cancel_url: `${config.CLIENT_URL}/payment/cancel`,
     line_items: [
       {
         quantity: 1,
