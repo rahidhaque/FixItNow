@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
 import { catchAsync } from "../../utility/catchAsync";
 import { sendResponse } from "../../utility/sendResponse";
-import { updateAvailability, updateProfile } from "./profile.service";
+import { getTechnicianBookings, updateAvailability, updateProfile } from "./profile.service";
 
 export const putProfile: RequestHandler = catchAsync(async (req, res) => {
   const technicianId = req.user!.id;
@@ -26,5 +26,16 @@ export const putAvailability: RequestHandler = catchAsync(async (req, res) => {
   sendResponse(res, {
     message: "Availability updated successfully.",
     data: profile,
+  });
+});
+
+export const getBookings: RequestHandler = catchAsync(async (req, res) => {
+  const technicianId = req.user!.id;
+
+  const bookings = await getTechnicianBookings(technicianId);
+
+  sendResponse(res, {
+    message: "Bookings fetched successfully.",
+    data: bookings,
   });
 });

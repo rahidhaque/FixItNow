@@ -30,3 +30,23 @@ export async function updateAvailability(
     },
   });
 }
+
+export async function getTechnicianBookings(userId: string) {
+  return prisma.booking.findMany({
+    where: {
+      service: {
+        technicianProfile: {
+          userId,
+        },
+      },
+    },
+    include: {
+      customer: true,
+      service: true,
+      payment: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
