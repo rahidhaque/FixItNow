@@ -9,6 +9,7 @@ import { serviceRouter } from "./modules/service/service.route";
 import bookingRouter from "./modules/booking/booking.route";
 import paymentRouter from "./modules/payment/payment.router";
 import profileRouter from "./modules/profile/profile.route";
+import reviewRouter from "./modules/review/review.route";
 
 const app: Application = express();
 
@@ -28,6 +29,7 @@ app.use("/api", serviceRouter);
 app.use("/api/bookings", bookingRouter);
 app.use("/api/payments", paymentRouter);
 app.use("/api/technician", profileRouter);
+app.use("/api/reviews", reviewRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
