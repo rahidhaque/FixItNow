@@ -27,7 +27,7 @@ app.use("/api/user", userRouter);
 app.use("/api", serviceRouter);
 app.use("/api/bookings", bookingRouter);
 app.use("/api/payments", paymentRouter);
-app.use("/api/profile", profileRouter);
+app.use("/api/technician", profileRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);

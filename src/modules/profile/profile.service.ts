@@ -6,11 +6,27 @@ export async function updateProfile(
     bio?: string;
     experience?: number;
   },
-) {
+) 
+{
   return prisma.technicianProfile.update({
     where: {
       userId,
     },
     data: payload,
+  });
+}
+
+
+export async function updateAvailability(
+  userId: string,
+  availability: boolean
+) {
+  return prisma.technicianProfile.update({
+    where: {
+      userId,
+    },
+    data: {
+      availability,
+    },
   });
 }
