@@ -56,6 +56,7 @@ export const ModelName = {
   Payment: 'Payment',
   Review: 'Review',
   Service: 'Service',
+  TechnicianProfile: 'TechnicianProfile',
   User: 'User'
 } as const
 
@@ -133,10 +134,22 @@ export const ServiceScalarFieldEnum = {
   title: 'title',
   description: 'description',
   city: 'city',
-  availability: 'availability'
+  availability: 'availability',
+  technicianId: 'technicianId'
 } as const
 
 export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const TechnicianProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bio: 'bio',
+  experience: 'experience',
+  availability: 'availability'
+} as const
+
+export type TechnicianProfileScalarFieldEnum = (typeof TechnicianProfileScalarFieldEnum)[keyof typeof TechnicianProfileScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

@@ -67,6 +67,11 @@ export type Review = Prisma.ReviewModel
  */
 export type Service = Prisma.ServiceModel
 /**
+ * Model TechnicianProfile
+ * 
+ */
+export type TechnicianProfile = Prisma.TechnicianProfileModel
+/**
  * Model User
  * 
  */

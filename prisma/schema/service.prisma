@@ -6,4 +6,6 @@ model Service{
     availability Boolean @default(true)
     bookings Booking[]
     reviews Review[]
+    technicianId  String
+    technicianProfile    TechnicianProfile   @relation(fields: [technicianId], references: [id])
 }

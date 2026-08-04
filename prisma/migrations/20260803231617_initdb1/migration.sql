@@ -15,7 +15,8 @@ CREATE TABLE "Booking" (
     "id" TEXT NOT NULL,
     "customerId" TEXT NOT NULL,
     "serviceId" TEXT NOT NULL,
-    "status" "BookingStatus" NOT NULL,
+    "status" "BookingStatus" NOT NULL DEFAULT 'PENDING',
+    "totalPrice" DOUBLE PRECISION NOT NULL,
     "description" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -39,7 +40,9 @@ CREATE TABLE "Payment" (
     "id" TEXT NOT NULL,
     "bookingId" TEXT NOT NULL,
     "customerId" TEXT NOT NULL,
-    "status" "PaymentStatus" NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "status" "PaymentStatus" NOT NULL DEFAULT 'PENDING',
+    "transactionId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -67,8 +70,6 @@ CREATE TABLE "Service" (
     "description" TEXT,
     "city" TEXT NOT NULL,
     "availability" BOOLEAN NOT NULL DEFAULT true,
-    "categoryId" TEXT NOT NULL,
-    "technicianId" TEXT NOT NULL,
 
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
@@ -101,9 +102,6 @@ CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 CREATE UNIQUE INDEX "Payment_bookingId_key" ON "Payment"("bookingId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Payment_customerId_key" ON "Payment"("customerId");
-
--- CreateIndex
 CREATE INDEX "Payment_bookingId_idx" ON "Payment"("bookingId");
 
 -- CreateIndex
@@ -113,12 +111,6 @@ CREATE INDEX "Payment_customerId_idx" ON "Payment"("customerId");
 CREATE UNIQUE INDEX "Review_bookingId_key" ON "Review"("bookingId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Review_customerId_key" ON "Review"("customerId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Review_serviceId_key" ON "Review"("serviceId");
-
--- CreateIndex
 CREATE INDEX "Review_bookingId_idx" ON "Review"("bookingId");
 
 -- CreateIndex
@@ -126,12 +118,6 @@ CREATE INDEX "Review_customerId_idx" ON "Review"("customerId");
 
 -- CreateIndex
 CREATE INDEX "Review_serviceId_idx" ON "Review"("serviceId");
-
--- CreateIndex
-CREATE INDEX "Service_categoryId_idx" ON "Service"("categoryId");
-
--- CreateIndex
-CREATE INDEX "Service_technicianId_idx" ON "Service"("technicianId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
@@ -156,9 +142,3 @@ ALTER TABLE "Review" ADD CONSTRAINT "Review_customerId_fkey" FOREIGN KEY ("custo
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Service" ADD CONSTRAINT "Service_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Service" ADD CONSTRAINT "Service_technicianId_fkey" FOREIGN KEY ("technicianId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

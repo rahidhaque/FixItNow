@@ -4,5 +4,5 @@ import auth from "../../middleware/auth";
 
 export const serviceRouter = Router();
 
-serviceRouter.post("/service", auth("ADMIN"), addService);
+serviceRouter.post("/service", auth("TECHNICIAN"), addService);
 serviceRouter.get("/services", getServices);

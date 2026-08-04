@@ -8,12 +8,12 @@ import {
 } from "./generated/prisma/enums";
 
 async function main() {
-//   await prisma.review.deleteMany();
-//   await prisma.payment.deleteMany();
-//   await prisma.booking.deleteMany();
-//   await prisma.service.deleteMany();
-//   await prisma.category.deleteMany();
-//   await prisma.user.deleteMany();
+  //   await prisma.review.deleteMany();
+  //   await prisma.payment.deleteMany();
+  //   await prisma.booking.deleteMany();
+  //   await prisma.service.deleteMany();
+  //   await prisma.category.deleteMany();
+  //   await prisma.user.deleteMany();
 
   const password = await bcrypt.hash("bdonti123", 10);
 
@@ -76,6 +76,34 @@ async function main() {
     },
   });
 
+  // Technician profiles
+  const technicianProfile1 = await prisma.technicianProfile.create({
+    data: {
+      userId: technician1.id,
+      bio: "Professional home cleaner",
+      experience: 5,
+      availability: true,
+    },
+  });
+
+  const technicianProfile2 = await prisma.technicianProfile.create({
+    data: {
+      userId: technician2.id,
+      bio: "Certified electrician",
+      experience: 7,
+      availability: true,
+    },
+  });
+
+  const technicianProfile3 = await prisma.technicianProfile.create({
+    data: {
+      userId: technician3.id,
+      bio: "Experienced plumber",
+      experience: 4,
+      availability: true,
+    },
+  });
+
   //categories
   const electrical = await prisma.category.create({
     data: {
@@ -99,28 +127,32 @@ async function main() {
   });
 
   //services
-  const service1 = await prisma.service.create({
-    data: {
-      title: "Deep Home Cleaning",
-      description: "Complete cleaning service",
-      city: "Chittagong",
-    },
-  });
-  const service2 = await prisma.service.create({
-    data: {
-      title: "House Wiring",
-      description: "Complete electrical wiring",
-      city: "Dhaka"
-    },
-  });
-  const service3 = await prisma.service.create({
-    data: {
-      title: "Water Pipe Repair",
-      description: "Leak fixing",
-      city: "Dhaka",
-      availability: false
-    },
-  });
+ const service1 = await prisma.service.create({
+  data: {
+    title: "Deep Home Cleaning",
+    description: "Complete cleaning service",
+    city: "Chittagong",
+    technicianId: technicianProfile1.id,
+  },
+});
+
+const service2 = await prisma.service.create({
+  data: {
+    title: "House Wiring",
+    description: "Complete electrical wiring",
+    city: "Dhaka",
+    technicianId: technicianProfile2.id,
+  },
+});
+
+const service3 = await prisma.service.create({
+  data: {
+    title: "Water Pipe Repair",
+    description: "Leak fixing",
+    city: "Dhaka",
+    technicianId: technicianProfile3.id,
+  },
+});
 
   //bookings
   const booking1 = await prisma.booking.create({
@@ -200,4 +232,4 @@ async function main() {
 
 main().then(() => {
   process.exit(0);
-})
+});

@@ -10,7 +10,8 @@ export const getServices: RequestHandler = catchAsync(async (_req, res) => {
 
 
 export const addService: RequestHandler = catchAsync(async (req, res) => {
-  const service = await createService(req.body);
+  const params = req.user?.id as string;
+  const service = await createService(params, req.body);
 
   sendResponse(res, {
     message: "Service created successfully",
