@@ -190,7 +190,6 @@ const service3 = await prisma.service.create({
   await prisma.payment.create({
     data: {
       bookingId: booking1.id,
-      customerId: customer1.id,
       amount: booking1.totalPrice,
       status: PaymentStatus.COMPLETED,
       transactionId: "TXN-100001",
@@ -200,7 +199,6 @@ const service3 = await prisma.service.create({
   await prisma.payment.create({
     data: {
       bookingId: booking2.id,
-      customerId: customer2.id,
       amount: booking2.totalPrice,
       status: PaymentStatus.PENDING,
       transactionId: "TXN-100002",
@@ -210,7 +208,6 @@ const service3 = await prisma.service.create({
   await prisma.payment.create({
     data: {
       bookingId: booking3.id,
-      customerId: customer2.id,
       amount: booking3.totalPrice,
       status: PaymentStatus.FAILED,
       transactionId: "TXN-100003",

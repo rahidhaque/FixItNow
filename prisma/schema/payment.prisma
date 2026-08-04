@@ -1,7 +1,6 @@
 model Payment{
     id String @id@default(uuid())
-    bookingId String @unique
-    customerId String  
+    bookingId String @unique 
     amount Float
     status PaymentStatus @default(PENDING)
     transactionId String
@@ -9,9 +8,8 @@ model Payment{
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
-    customer User @relation(fields: [customerId], references: [id], onDelete: Cascade)
+    booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade) 
 
     @@index([bookingId])
-    @@index([customerId])
+
  }

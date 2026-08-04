@@ -10,7 +10,6 @@ model User{
     updatedAt DateTime @updatedAt
     customerBookings Booking[] @relation("CustomerBookings")
     technicianProfile  TechnicianProfile?
-    payments Payment[]
     reviews Review[]
 }
 

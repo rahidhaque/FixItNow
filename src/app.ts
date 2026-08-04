@@ -7,26 +7,27 @@ import categoryRouter from "./modules/category/category.route";
 import { userRouter } from "./modules/user/user.route";
 import { serviceRouter } from "./modules/service/service.route";
 import bookingRouter from "./modules/booking/booking.route";
+import paymentRouter from "./modules/payment/payment.router";
 
+const app: Application = express();
 
-const app: Application= express();
-
+app.use("/payments/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.get("/", (req,res) =>{
- res.send("Server is running on port");
-})
+app.get("/", (req, res) => {
+  res.send("Server is running on port");
+});
 
 app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/user", userRouter);
 app.use("/api", serviceRouter);
 app.use("/api/bookings", bookingRouter);
+app.use("/api/payments", paymentRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
-
 
 export default app;
