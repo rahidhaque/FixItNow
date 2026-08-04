@@ -9,7 +9,7 @@
     "db:seed": "prisma db seed",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "webook:stripe": "stripe listen --forward-to localhost:5000/webhooks"
+    "webook:stripe": "stripe listen --forward-to localhost:3000/webhooks"
   },
   "keywords": [],
   "author": "",
