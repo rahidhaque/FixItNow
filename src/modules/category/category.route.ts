@@ -4,7 +4,7 @@ import auth from "../../middleware/auth";
 
 const categoryRouter = Router();
 
-categoryRouter.post("/", addCategory);
-categoryRouter.get("/", auth("ADMIN"), getCategory);
+categoryRouter.post("/", auth("ADMIN"), addCategory);
+categoryRouter.get("/",  getCategory);
 
 export default categoryRouter;
